@@ -1,0 +1,15 @@
+# Compiled class files
+*.class
+out/
+bin/
+
+# Data files generated at runtime (contain user/account data)
+data/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store

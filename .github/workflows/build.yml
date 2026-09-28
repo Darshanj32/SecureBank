@@ -1,0 +1,29 @@
+name: Build SecureBank
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Compile
+        run: |
+          mkdir -p out
+          find src -name "*.java" > sources.txt
+          javac -d out @sources.txt
+
+      - name: Smoke test (exit immediately)
+        run: |
+          echo "3" | java -cp out Main
